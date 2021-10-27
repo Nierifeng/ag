@@ -1,0 +1,26 @@
+<div class="ui-result-container">
+  <div class="ui-container">
+    <div class="ui-img-upload">
+      <div class="ui-img-item" *ngFor="let item of imgFiles;index as index">
+        <div class="ui-img">
+          <a class="ui-img-thumbnail" rel="noopener noreferrer" [target]="'_blank'">
+            <img [src]="item.url">
+          </a>
+        </div>
+        <span class="ui-img-actions">
+          <i class="byz-icon bi-eye" (click)="toView(index);"></i>
+          <i class="byz-icon bi-download" *ngIf="isDownloadable && item.id" (click)="download(item.id);"></i>
+          <i class="byz-icon bi-close-3" *ngIf="isDeletable" (click)="remove(index,item.id);"></i>
+        </span>
+      </div>
+      <div class="ui-select" *ngIf="isCanUpload">
+        <div class="ui-upload" (click)="click();">
+          <input #file type="file" style="display: none;" [multiple]="multiple" [accept]="accept"
+            (change)="onFileSelect($event)">
+          <i class="byz-icon bi-plus"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui-identify-result-container"></div>
+</div>
